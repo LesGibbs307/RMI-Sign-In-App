@@ -1,0 +1,95 @@
+﻿@using RmiOnLocation;
+@using Rmi.OnLocation.Domain;
+@using System.Collections.Generic;
+
+@{
+    AjaxOptions options = new AjaxOptions {
+        HttpMethod = "POST",
+        OnSuccess = "formSuccess",
+        OnFailure = "formFails",
+		Url = "/visitor/submit-info/"
+    };
+}
+
+@model Visitor
+@{
+    ViewBag.Title = "Index";
+	List<Employee> Employees = Employee.Employees;
+}
+@Html.Partial("_Header")
+@*<div class="col-xs-12 col-centered">
+	<input class="hidden btn-cls back-btn" value="Go Back" type="button" />
+</div>*@
+<div class="col-centered signInBtn col-xs-12">
+@Html.Partial("_SignInOrSignOut")
+</div>
+<div class="col-centered signInForm hidden col-xs-12">
+           @using (Ajax.BeginForm(null, null, options, new { @class = "visitor-form col-xs-6 col-centered" })) {
+            <div class="input">
+                @*@Html.Label("First Name")*@
+                @Html.TextBoxFor(model => model.FirstName, new {
+               @class = "firstName required form-control",
+               @id = "firstName",
+               @placeHolder = "First Name",
+               @name = "FirstName",
+               @tabIndex = 1
+           })
+            </div>
+            <div class="input">
+               @*@Html.Label("Last Name")*@
+               @Html.TextBoxFor(model => model.LastName, new {
+              @class = "lastName form-control required",
+              @id = "lastName",
+              @name = "LastName",
+              @placeHolder = "Last Name",
+              @tabIndex = 2
+          })
+            </div>
+            <div class="input">
+               @*@Html.Label("Company")*@
+               @Html.TextBoxFor(model => model.Company, new {
+              @class = "company form-control",
+              @id = "company",
+              @name = "Company",
+              @placeHolder = "Company",
+              @tabIndex = 3
+          })
+            </div>
+            <div class="input">
+                @*@Html.Label("Email Address")*@
+                @Html.TextBoxFor(model => model.EmailAddress, new {
+               @class = "emailAddress form-control",
+               @id = "emailAddress",
+               @name = "EmailAddress",
+               @placeHolder = "Email Address",
+               @tabIndex = 4
+           })
+            </div>
+            <div class="input">
+                @*@Html.Label("Reason for Visit?")*@
+                @Html.TextBoxFor(model => model.ReasonForVisit, new {
+               @class = "reasonForVisit required form-control",
+               @id = "reasonForVisit",
+               @name = "ReasonForVisit",
+               @placeHolder = "Reason For Visit",
+               @tabIndex = 5
+           })
+            </div>
+            <div class="input">
+               @*@Html.Label("Who are you visiting?")*@
+               @Html.DropDownListFor(model => model.EmployeeId, Employee.EmployeeDropDown, new {
+               @class= "employeeList required form-control",
+           })
+            </div>
+            @Html.HiddenFor(model => model.SignIn)
+            @Html.HiddenFor(model => model.SignOut)
+            @Html.HiddenFor(model => model.IsEmailed)
+	<div class="btn-container">
+		<input type="submit" class="btn-cls submit-btn" value="Submit" onclick="toggleBtn();" />
+		<img src="/Content/Images/ajax-loader.gif" class="col-centered hidden" id="imgLoader" />
+	</div>
+		   }
+</div>
+<div class="col-centered SignOutInfo hidden col-xs-12">
+	
+</div>

@@ -1,0 +1,28 @@
+﻿@using RmiOnLocation;
+@using Rmi.OnLocation.Domain;
+
+@{
+	AjaxOptions options = new AjaxOptions {
+		HttpMethod = "POST",
+		OnSuccess = "UpdateList",
+		OnFailure = "NoList",
+		Url = "/visitor/updatelist/"
+	};
+}
+@{
+	ViewBag.Title = "UpdateList";
+}
+
+@model List<Visitor>
+
+<div class="hidden col-xs-12 pop-up col-centered">
+	<p>Are you sure you want to sign out?</p>
+	<input type="button" class="btn-cls pop-signout" value="Sign Out" />
+</div>
+<ul id="signout-list" class="col-centered col-xs-12">
+@foreach(Visitor visitor in Model) {
+	<li class="btn-cls" id="@visitor.Id">
+		<span>@visitor.ListText</span>
+	</li>
+}
+</ul>

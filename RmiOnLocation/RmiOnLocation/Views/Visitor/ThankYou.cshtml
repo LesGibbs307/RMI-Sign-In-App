@@ -1,0 +1,12 @@
+﻿@{
+    string VisitorFirstName = Session["VisitorFirstName"].ToString();
+    string EmployeeFirstName = Session["EmployeeFirstName"].ToString(); ;
+}
+<script src="~/Scripts/redirect-to-index.js"></script>
+@Html.Partial("_Header")
+<div class="col-xs-6 col-centered ty-message">
+    <h1>Hey <span>@VisitorFirstName</span>, Thank you for signing in! <span>@EmployeeFirstName</span> will see you shortly!</h1>
+</div>
+
+<div id="count-down" class="col-xs-6 col-centered"></div>
+<script type="text/javascript">startCountdown(5, "#count-down")</script>

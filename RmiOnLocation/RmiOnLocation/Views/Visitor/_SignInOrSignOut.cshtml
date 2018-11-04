@@ -1,0 +1,32 @@
+﻿@using RmiOnLocation;
+@using Rmi.OnLocation.Domain;
+
+@model Visitor
+@{
+    ViewBag.Title = "GetList";
+}
+@{
+    AjaxOptions options = new AjaxOptions
+    {
+        HttpMethod = "GET",
+        OnSuccess = "GetList",
+        OnFailure = "NoList",
+        Url = "/visitor/get-list/"
+    };
+}
+<ul class="col-xs-12">
+    <li class="col-xs-6">
+        <input type="button" class="btn-cls SignIn" value="Tap to Sign In" name="Sign In" />
+    </li>
+    <li class="col-xs-6">
+        <input type="button" value="Sign Out" class="btn-cls SignOut" name="Sign Out" />
+    </li>
+</ul>
+<!--<div class="col-xs-12">
+    <div class="col-xs-2 col-left">
+        <input type="button" value="Sign Out" class="btn-cls SignOut" name="Sign Out" />
+    </div>
+    <div class="col-xs-2 col-right">
+            <input type="button" value="Sign Out" class="btn-cls SignOut" name="Sign Out" />
+    </div>
+</div>-->
